@@ -32,12 +32,17 @@ public class GoogleTest {
     public void checkExchangeRate() {
         open(getGoogleURL());
         GooglePage googlePage = new GooglePage();
+        //ищем слово "Открытие в гугле
         googlePage.searchGoogle(getStringForSearch());
+        //ищем в результатах поиска урл открытия
         googlePage.getGoogleSearchResults()
                 .findBy(Condition.attribute("href", getOpeningURL())).shouldHave().pressEnter();
+        //проверяем что блок с курсом валют существует
         getMainPageExchangeElement().shouldHave();
+        //две строки с евро и долларом в списке строк
         for (SelenideElement i : getMainPageExchangeRow()){
             List<String> rates = i.findAll(By.cssSelector("span.main-page-exchange__rate")).texts();
+            //запятая в строках, число не парсится без замены
             List<Double> finalRates = rates.stream().map(rate -> rate.replace(",", ".") )
                     .mapToDouble(Double:: parseDouble).boxed().collect(Collectors.toList());
             Assert.assertTrue(finalRates.size()==2);

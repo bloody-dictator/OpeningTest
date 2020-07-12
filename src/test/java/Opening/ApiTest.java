@@ -11,13 +11,14 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 
 public class ApiTest {
+    private final String apiURL = "https://reqres.in/api/users";
+
     @Test
     public void checkURLAPI(){
-        Response response = get("https://reqres.in/api/users?page=2");
+        Response response = given().queryParam("page", "2").when().get(apiURL);
        ResponsePojo responsePojo =response.getBody().as(ResponsePojo.class);
        List<UserPojo> data = Arrays.asList(responsePojo.getData());
        for (UserPojo i: data){
@@ -33,7 +34,7 @@ public class ApiTest {
     public void checkPostAPI(){
         PostPojo postPojo = new PostPojo("morfeus", "leader");
         Response response = given().contentType(ContentType.JSON).body(postPojo)
-                .when().post("https://reqres.in/api/users");
+                .when().post(apiURL);
         PostPojo postPojoResponse = response.getBody().as(PostPojo.class);
         Assert.assertEquals(postPojo.getName(), postPojoResponse.getName());
         Assert.assertEquals(postPojo.getJob(), postPojoResponse.getJob());
