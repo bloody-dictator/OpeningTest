@@ -27,8 +27,7 @@ public class UITest {
         //ищем слово "Открытие в гугле
         googlePage.searchGoogle(SEARCHING_STRING);
         //ищем в результатах поиска урл открытия
-        googlePage.getGoogleSearchResults()
-                .findBy(Condition.attribute("href", OPENING_URL)).shouldHave().pressEnter();
+        googlePage.searchInResultsURL(OPENING_URL);
         OpeningPage openingPage = new OpeningPage();
         //проверяем что блок с курсом валют существует
         openingPage.getMainPageExchangeElement().shouldHave();

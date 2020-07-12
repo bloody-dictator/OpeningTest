@@ -1,5 +1,6 @@
 package Pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
@@ -19,4 +20,7 @@ public class GooglePage {
     public void searchGoogle(String searchingString){
         getGoogleSearchString().setValue(searchingString).pressEnter();
     }
+
+    public void searchInResultsURL(String searchingURL) { getGoogleSearchResults()
+            .findBy(Condition.attribute("href", searchingURL)).shouldHave().pressEnter();}
 }
