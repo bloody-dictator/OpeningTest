@@ -1,4 +1,4 @@
-package Opening;
+package Tests;
 
 import Pojos.PostPojo;
 import Pojos.ResponsePojo;

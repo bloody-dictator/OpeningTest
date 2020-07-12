@@ -1,7 +1,8 @@
-package Opening;
+package Tests;
 
+import Pages.GooglePage;
+import Pages.OpeningPage;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -13,15 +14,6 @@ import java.util.stream.Collectors;
 import static com.codeborne.selenide.Selenide.*;
 
 public class UITest {
-
-    public SelenideElement getMainPageExchangeElement(){
-        return $(By.className("main-page-exchange"));
-    }
-
-    public ElementsCollection getMainPageExchangeRow(){
-        return $$(By.className("main-page-exchange__row"));
-    }
-
     public String getGoogleURL(){ return "https://www.google.com/"; }
 
     public String getStringForSearch(){ return "Открытие"; }
@@ -37,10 +29,11 @@ public class UITest {
         //ищем в результатах поиска урл открытия
         googlePage.getGoogleSearchResults()
                 .findBy(Condition.attribute("href", getOpeningURL())).shouldHave().pressEnter();
+        OpeningPage openingPage = new OpeningPage();
         //проверяем что блок с курсом валют существует
-        getMainPageExchangeElement().shouldHave();
+        openingPage.getMainPageExchangeElement().shouldHave();
         //две строки с евро и долларом в списке строк
-        for (SelenideElement i : getMainPageExchangeRow()){
+        for (SelenideElement i : openingPage.getMainPageExchangeRow()){
             List<String> rates = i.findAll(By.cssSelector("span.main-page-exchange__rate")).texts();
             //запятая в строках, число не парсится без замены
             List<Double> finalRates = rates.stream().map(rate -> rate.replace(",", ".") )
