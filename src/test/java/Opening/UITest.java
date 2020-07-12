@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class GoogleTest {
+public class UITest {
 
     public SelenideElement getMainPageExchangeElement(){
         return $(By.className("main-page-exchange"));
