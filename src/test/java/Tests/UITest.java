@@ -14,21 +14,21 @@ import java.util.stream.Collectors;
 import static com.codeborne.selenide.Selenide.*;
 
 public class UITest {
-    public String getGoogleURL(){ return "https://www.google.com/"; }
+    private final String GOOGLE_URL = "https://www.google.com/";
 
-    public String getStringForSearch(){ return "Открытие"; }
+    private final String SEARCHING_STRING = "Открытие";
 
-    public String getOpeningURL(){ return "https://www.open.ru/"; }
+    private final String OPENING_URL = "https://www.open.ru/";
 
     @Test
     public void checkExchangeRate() {
-        open(getGoogleURL());
+        open(GOOGLE_URL);
         GooglePage googlePage = new GooglePage();
         //ищем слово "Открытие в гугле
-        googlePage.searchGoogle(getStringForSearch());
+        googlePage.searchGoogle(SEARCHING_STRING);
         //ищем в результатах поиска урл открытия
         googlePage.getGoogleSearchResults()
-                .findBy(Condition.attribute("href", getOpeningURL())).shouldHave().pressEnter();
+                .findBy(Condition.attribute("href", OPENING_URL)).shouldHave().pressEnter();
         OpeningPage openingPage = new OpeningPage();
         //проверяем что блок с курсом валют существует
         openingPage.getMainPageExchangeElement().shouldHave();

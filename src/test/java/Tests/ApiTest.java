@@ -14,11 +14,11 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 
 public class ApiTest {
-    private final String apiURL = "https://reqres.in/api/users";
+    private final String API_URL = "https://reqres.in/api/users";
 
     @Test
     public void checkURLAPI(){
-        Response response = given().queryParam("page", "2").when().get(apiURL);
+        Response response = given().queryParam("page", "2").when().get(API_URL);
        ResponsePojo responsePojo =response.getBody().as(ResponsePojo.class);
        List<UserPojo> data = Arrays.asList(responsePojo.getData());
        for (UserPojo i: data){
@@ -34,7 +34,7 @@ public class ApiTest {
     public void checkPostAPI(){
         PostPojo postPojo = new PostPojo("morfeus", "leader");
         Response response = given().contentType(ContentType.JSON).body(postPojo)
-                .when().post(apiURL);
+                .when().post(API_URL);
         PostPojo postPojoResponse = response.getBody().as(PostPojo.class);
         Assert.assertEquals(postPojo.getName(), postPojoResponse.getName());
         Assert.assertEquals(postPojo.getJob(), postPojoResponse.getJob());
