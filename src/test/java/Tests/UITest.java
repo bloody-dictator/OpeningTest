@@ -20,7 +20,7 @@ public class UITest {
 
     private final String OPENING_URL = "https://www.open.ru/";
 
-    @Test
+    @Test(description = "Проверяет присутствие open.ru в результатах поиска и курсы валют на open.ru")
     public void checkExchangeRate() {
         open(GOOGLE_URL);
         GooglePage googlePage = new GooglePage();

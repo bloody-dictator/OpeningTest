@@ -16,8 +16,8 @@ import static io.restassured.RestAssured.given;
 public class ApiTest {
     private final String API_URL = "https://reqres.in/api/users";
 
-    @Test
-    public void checkURLAPI(){
+    @Test(description = "Проверяет, что в ответе Get-запроса поля списка пользователей notNull")
+    public void checkGetAPI(){
         Response response = given().queryParam("page", "2").when().get(API_URL);
        ResponsePojo responsePojo =response.getBody().as(ResponsePojo.class);
        List<UserPojo> data = Arrays.asList(responsePojo.getData());
@@ -30,7 +30,7 @@ public class ApiTest {
        }
     }
 
-    @Test
+    @Test(description = "Проверяет, что в ответе Post-запроса те же самые значения, что в запросе")
     public void checkPostAPI(){
         PostPojo postPojo = new PostPojo("morfeus", "leader");
         Response response = given().contentType(ContentType.JSON).body(postPojo)
