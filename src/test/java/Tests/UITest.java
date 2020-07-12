@@ -36,7 +36,7 @@ public class UITest {
             //запятая в строках, число не парсится без замены
             List<Double> finalRates = rates.stream().map(rate -> rate.replace(",", ".") )
                     .mapToDouble(Double:: parseDouble).boxed().collect(Collectors.toList());
-            Assert.assertTrue(finalRates.size()==2);
+            Assert.assertEquals(2, finalRates.size());
             Assert.assertTrue(finalRates.get(0)<finalRates.get(1));
         }
     }
