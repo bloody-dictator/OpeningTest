@@ -22,8 +22,8 @@ public class ApiTest {
        ResponsePojo responsePojo =response.getBody().as(ResponsePojo.class);
        List<UserPojo> data = Arrays.asList(responsePojo.getData());
        for (UserPojo i: data){
-           Assert.assertTrue(!(i.getFirst_name().equals(null)));
-           Assert.assertTrue(!(i.getLast_name().equals(null)));
+           Assert.assertTrue(!(i.getFirstName().equals(null)));
+           Assert.assertTrue(!(i.getLastName().equals(null)));
            Assert.assertTrue(i.getId()!=0);
            Assert.assertTrue(!(i.getEmail().equals(null)));
            Assert.assertTrue(!(i.getAvatar().equals(null)));

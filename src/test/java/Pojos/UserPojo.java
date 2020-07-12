@@ -19,19 +19,19 @@ public class UserPojo {
         return email;
     }
 
-    public String getFirst_name() {
+    public String getFirstName() {
         return first_name;
     }
 
-    public String getLast_name() {
+    public String getLastName() {
         return last_name;
     }
 
-    public UserPojo(int id, String email, String first_name, String last_name, String avatar){
+    public UserPojo(int id, String email, String firstName, String lastName, String avatar){
         this.id = id;
         this.email = email;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.first_name = firstName;
+        this.last_name = lastName;
         this.avatar = avatar;
     }
 }
