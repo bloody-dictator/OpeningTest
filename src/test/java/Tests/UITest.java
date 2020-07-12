@@ -2,7 +2,6 @@ package Tests;
 
 import Pages.GooglePage;
 import Pages.OpeningPage;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -11,7 +10,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 
 public class UITest {
     private final String GOOGLE_URL = "https://www.google.com/";
