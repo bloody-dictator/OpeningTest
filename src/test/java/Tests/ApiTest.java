@@ -8,9 +8,6 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static io.restassured.RestAssured.given;
 
 public class ApiTest {
@@ -20,7 +17,7 @@ public class ApiTest {
     public void checkGetAPI(){
         Response response = given().queryParam("page", "2").when().get(API_URL);
        ResponsePojo responsePojo =response.getBody().as(ResponsePojo.class);
-       List<UserPojo> data = Arrays.asList(responsePojo.getData());
+       UserPojo[] data = responsePojo.getData();
        for (UserPojo i: data){
            Assert.assertNotNull(i.getFirstName());
            Assert.assertNotNull(i.getLastName());
